@@ -1,0 +1,17 @@
+{
+  "name": "pricelog",
+  "version": "1.0.0",
+  "description": "API to study tecnologies of backend",
+  "main": "index.js",
+  "repository": "https://github.com/sevilha/pricelog",
+  "author": "Vinicius Sevilha",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.19.2",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.1"
+  }
+}
