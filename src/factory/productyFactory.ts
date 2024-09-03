@@ -1,16 +1,15 @@
 import { DATABASE, DATABASE_NAME } from "../constants";
 import { ProductRepository } from "../repository/productRepository";
 import { ProductService } from "../service/productService";
-import { Database } from "../utils/database";
+import { DB } from "../utils/database";
 
 
-class ProductFactory {
+export class ProductFactory {
     static async createInstance() {
-        const db = new Database({database: DATABASE, databaseName: DATABASE_NAME}).connection();
-        const dbConnection = await db.connect()
+        const dbConnection = await new DB({database: DATABASE, databaseName: DATABASE_NAME}).connection();
         const productRepository = new ProductRepository({ dbConnection })
-        const userService = new ProductService({ productRepository })
+        const productService = new ProductService({ productRepository })
 
-        return userService
+        return productService;
     }
 }
