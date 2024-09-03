@@ -1,33 +1,36 @@
 
-const sqlite3 = require('sqlite3').verbose();
+import sqlite3 from "sqlite3";
+import { open, Database } from "sqlite"
 
-export class Database {
+export class DB {
 
   private databaseName: string;
   private database: string;
-  private db: any;
+  private db: Database;
 
   constructor({database, databaseName}) {
     this.databaseName = database;
     this.databaseName = databaseName;
   }
 
-  connection() {
+  async connection() {
     switch (this.database) {
       case "mongo" : return "not yet implemented";
-      case "sqlite": return this.sqliteConnection();
+      case "sqlite": return await this.sqliteConnection();
       default: return this.sqliteConnection();
     }
   }
 
-  private sqliteConnection() {
-    this.db = new sqlite3.Database(`../../db/${this.databaseName}.db`, sqlite3.OPEN_READWRITE, (err) => {
-      if (err) {
-        console.error(err.message);
-      }
-      console.log('Connected to the database.');
-    });
+  async sqliteConnection() {
+    this.db = await open({
+      filename: `../../db/${this.databaseName}.db`,
+      driver: sqlite3.Database
+    })
 
-    return this.db;
+    return this;
+  }
+
+  async find(query: string) {
+    return await this.db.get(query)
   }
 }
