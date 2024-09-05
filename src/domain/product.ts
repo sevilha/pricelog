@@ -7,7 +7,7 @@ interface ProductProps {
     segmentType: string;
 }
 
-type ProductType = "FII" | "AÇÕES";
+export type ProductType = "FII" | "AÇÕES";
 
 export default class Product {
     id?: string;
