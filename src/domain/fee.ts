@@ -3,6 +3,7 @@ interface AdministrationFeeProps {
     fee: number;
     billingCycle: BillingCycle;
     product: string;
+    createdAt: string;
 }
 
 type BillingCycle = "A.A." | "A.M." | "A.S." | "A.Q." | "A.T." | "A.Sm."
